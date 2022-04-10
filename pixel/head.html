@@ -1,0 +1,42 @@
+
+<!--sensaimetrics-app-->
+<script>(function (s, e, n, s, a, i) {s.sm = s.sm || {start: new Date().getTime()};s._smSettings = {id: i};var f = e.getElementsByTagName('head')[0],j = e.createElement('script');j.async = true;j.src = n+i+a+'?v='+s.sm.start;f.parentNode.insertBefore(j, f);})('', document, 'https://tracker.sensaimetrics.io/static/sensaiTracker-',window,'.js','SM-d4R7');</script>
+<!--/sensaimetrics-app-->
+
+<script>
+
+    const myorder = () => {
+      setTimeout(()=>{
+        document.querySelector(".vtex-account__page-body.undefined.vtex-account__order-details .w-100.pv7.fl .flex.flex-column.flex-row-l div span+span").style.color = 'white'
+        var id = document.querySelector(".vtex-account__page-body.undefined.vtex-account__order-details .w-100.pv7.fl .flex.flex-column.flex-row-l div span+span").textContent
+        if(id=="Express - Las entregas inician a las 11:00 am. Si realizas tu compra después de las 15:00 hrs te entregaremos al día siguiente."){
+          var text = `<a href="https://tracking.ivoy.mx/" target="_blank">https://tracking.ivoy.mx/</a>`
+        }else{
+          var text = `<a href="https://www.dhl.com/mx-es/home.html" target="_blank">https://www.dhl.com/mx-es/home.html</a>`
+        }
+        document.querySelector(".vtex-account__page-body.undefined.vtex-account__order-details .w-100.pv7.fl .flex.flex-column.flex-row-l > div").insertAdjacentHTML("beforeend", `<p>Si ya te asignamos tu número de guía, puedes dar seguimiento a tu paquete en el sitio de la mensajería: <strong>${text}</strong> </p>`)
+      },500)
+    }
+
+    window.addEventListener("load", function(event) {
+        var url = window.location.href
+        if(url.indexOf("/account#/orders/")>-1){
+            var element = document.querySelector(".vtex-account__page-body.undefined.vtex-account__order-details .w-100.pv7.fl .flex.flex-column.flex-row-l div")
+            if(element){
+                myorder()
+            }
+        }
+    })
+
+    window.addEventListener('hashchange', function() {
+        var url = window.location.href
+        if(url.indexOf("/account#/orders/")>-1){
+            var element = document.querySelector(".vtex-account__page-body.undefined.vtex-account__order-details .w-100.pv7.fl .flex.flex-column.flex-row-l div")
+            if(element){
+                myorder()
+            }
+        }
+    });
+
+
+  </script>
